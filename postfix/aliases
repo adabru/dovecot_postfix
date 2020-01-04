@@ -1,0 +1,13 @@
+
+# Person who should get root's mail. Don't receive mail as root!
+root: mail
+
+# Basic system aliases -- these MUST be present
+MAILER-DAEMON:  postmaster
+postmaster:     root
+
+# other aliases
+abuse:          postmaster
+sink:           postmaster
+info:           postmaster
+me:             postmaster
