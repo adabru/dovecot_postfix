@@ -3,7 +3,6 @@ compatibility_level = 2
 myhostname = adabru.de
 mydomain = adabru.de
 recipient_delimiter = +
-syslog_name = postfix/smtps
 
 smtpd_tls_wrappermode = yes
 smtpd_sasl_auth_enable = yes

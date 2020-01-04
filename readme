@@ -1,7 +1,10 @@
 Run
 
 ```
-docker run --rm --name test -ti -p 465:465 -p 993:993 alpine /bin/sh
+git clone https://github.com/adabru/dovecot_postfix.git
+cd dovecot_postfix
+
+docker run --rm --name test -ti -p 465:465 -p 993:993 . /bin/sh
 
 # then, inside the container:
 # test global connectivity in both directions
@@ -9,4 +12,11 @@ ping adabru.de
 nc -v -l -p 993
 
 apk add --no-cache postfix dovecot
+wget https://github.com/adabru/dovecot_postfix/archive/master.tar.gz
+tar -xf master.tar.gz
+cd *-master
+mv /etc/postfix/main.cf /etc/postfix/main.cf.bak
+mv /etc/postfix/master.cf /etc/postfix/master.cf.bak
+cp postfix/main.cf /etc/postfix/main.cf
+cp postfix/master.cf /etc/postfix/master.cf
 ```
