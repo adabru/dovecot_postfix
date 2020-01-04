@@ -1,0 +1,12 @@
+Run
+
+```
+docker run --rm --name test -ti -p 465:465 -p 993:993 alpine /bin/sh
+
+# then, inside the container:
+# test global connectivity in both directions
+ping adabru.de
+nc -v -l -p 993
+
+apk add --no-cache postfix dovecot
+```

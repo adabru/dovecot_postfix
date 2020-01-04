@@ -1,0 +1,12 @@
+# see man 5 postconf
+compatibility_level = 2
+myhostname = adabru.de
+mydomain = adabru.de
+recipient_delimiter = +
+syslog_name = postfix/smtps
+
+smtpd_tls_wrappermode = yes
+smtpd_sasl_auth_enable = yes
+smtpd_recipient_restrictions = permit_mynetworks, reject
+smtpd_tls_cert_file=/etc/ssl/certs/mailcert.pem
+smtpd_tls_key_file=/etc/ssl/private/mail.key
