@@ -4,6 +4,7 @@ myhostname = example.com
 mydomain = example.com
 recipient_delimiter = +
 
+smtp_tls_security_level = encrypt
 smtpd_tls_wrappermode = yes
 # smtpd_sasl_auth_enable = yes
 smtpd_recipient_restrictions = permit_mynetworks, reject

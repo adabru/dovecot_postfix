@@ -6,7 +6,7 @@ cd dovecot_postfix
 docker build -t mail .
 
 # get inside the container:
-docker run --rm --name test -ti -p 465:465 -p 993:993 mail /bin/sh
+docker run --rm --name test -ti -p 465:465 -p 993:993 -e DOMAIN=yourdomain.com mail /bin/sh
 ```
 
 ```
@@ -21,13 +21,19 @@ sed -i "s/example\.com/$DOMAIN/" /etc/postfix/main.cf
 syslogd
 postfix start
 
+# check logs
+tail /var/log/messages
+
 # start a new terminal
 ```
 
 ```
 DOMAIN=yourdomain.com
+
 # check connection
 nc $DOMAIN 465
+
 # check smtp relay
+msmtp -v --host=$DOMAIN --port=465 --tls=on -S
 msmtp -v --host=$DOMAIN --port=465 --tls=on -S
 ```
