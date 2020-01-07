@@ -7,11 +7,27 @@ docker build -t mail .
 
 # get inside the container:
 docker run --rm --name test -ti -p 465:465 -p 993:993 mail /bin/sh
+```
 
+```
 # test global connectivity in both directions
 ping adabru.de
-nc -v -l -p 993
+nc -v -l -p 465
+
+# change your domain
+DOMAIN=yourdomain.com
+sed -i "s/example\.com/$DOMAIN/" /etc/postfix/main.cf
 
 syslogd
 postfix start
+
+# start a new terminal
+```
+
+```
+DOMAIN=yourdomain.com
+# check connection
+nc $DOMAIN 465
+# check smtp relay
+msmtp -v --host=$DOMAIN --port=465 --tls=on -S
 ```
