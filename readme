@@ -15,7 +15,6 @@ ping adabru.de
 nc -v -l -p 465
 
 # change your domain
-DOMAIN=yourdomain.com
 sed -i "s/example\.com/$DOMAIN/" /etc/postfix/main.cf
 
 syslogd
@@ -34,6 +33,7 @@ DOMAIN=yourdomain.com
 nc $DOMAIN 465
 
 # check smtp relay
-msmtp -v --host=$DOMAIN --port=465 --tls=on -S
-msmtp -v --host=$DOMAIN --port=465 --tls=on -S
+msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-certcheck=off -S
+msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-certcheck=off \
+  --from=sink@example.com -- sink@example.com
 ```

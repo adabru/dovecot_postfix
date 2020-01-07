@@ -10,3 +10,7 @@ smtpd_tls_wrappermode = yes
 smtpd_recipient_restrictions = permit_mynetworks, reject
 smtpd_tls_cert_file=/etc/ssl/certs/mailcert.pem
 smtpd_tls_key_file=/etc/ssl/private/mail.key
+smtp_tls_loglevel = 1
+smtpd_tls_loglevel = 1
+tlsproxy_client_loglevel = 1
+tlsproxy_tls_loglevel = 1
