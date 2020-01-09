@@ -33,7 +33,10 @@ DOMAIN=yourdomain.com
 nc $DOMAIN 465
 
 # check smtp relay
-msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-certcheck=off -S
-msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-certcheck=off \
-  --from=sink@example.com -- sink@example.com
+msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-starttls=off --tls-certcheck=off -S
+
+echo -e "Subject: Hello\n\nWorld!" | \
+msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-starttls=off  --tls-certcheck=off --auth=off \
+  --from=info@$DOMAIN --add-missing-from-header=on --add-missing-date-header=on \
+  -- info@$DOMAIN
 ```
