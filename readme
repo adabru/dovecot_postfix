@@ -4,9 +4,11 @@ Run
 git clone https://github.com/adabru/dovecot_postfix.git
 cd dovecot_postfix
 docker build -t mail .
+# if apk install fails try: (see https://github.com/gliderlabs/docker-alpine/issues/386#issuecomment-567684492)
+# docker build -t mail --network=host .
 
 # get inside the container:
-docker run --rm --name test -ti -p 465:465 -p 993:993 -e DOMAIN=yourdomain.com mail /bin/sh
+docker run --rm --name test -ti -p 465:465 -p 993:993 -e DOMAIN=yourdomain.com -e MYNETWORKS="127.0.0.0/8 172.17.0.0/16" mail /bin/sh
 ```
 
 ```
@@ -16,6 +18,8 @@ nc -v -l -p 465
 
 # change your domain
 sed -i "s/example\.com/$DOMAIN/" /etc/postfix/main.cf
+# add local trusted networks
+sed -i "s|127\.0\.0\.0/8|$MYNETWORKS|" /etc/postfix/main.cf
 
 syslogd
 postfix start

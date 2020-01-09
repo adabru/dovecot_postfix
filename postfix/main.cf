@@ -8,6 +8,8 @@ compatibility_level = 2
 myhostname = example.com
 mydomain = example.com
 
+mynetworks = 127.0.0.0/8
+
 smtp_tls_security_level = encrypt
 smtpd_tls_wrappermode = yes
 # smtpd_sasl_auth_enable = yes
