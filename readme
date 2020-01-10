@@ -17,9 +17,9 @@ ping adabru.de
 nc -v -l -p 465
 
 # change your domain
-sed -i "s/example\.com/$DOMAIN/" /etc/opensmtpd.conf
+sed -i "s/example\.com/$DOMAIN/" /etc/smtpd/smtpd.conf
 # add local trusted networks
-sed -i "s|127\.0\.0\.0/8|$MYNETWORK|" /etc/opensmtpd.conf
+sed -i "s|127\.0\.0\.0/8|$MYNETWORK|" /etc/smtpd/smtpd.conf
 
 syslogd
 smtpd
