@@ -8,7 +8,7 @@ docker build -t mail .
 # docker build -t mail --network=host .
 
 # get inside the container:
-docker run --rm --name test -ti -p 465:465 -p 993:993 -e DOMAIN=yourdomain.com -e MYNETWORKS="127.0.0.0/8 172.17.0.0/16" mail /bin/sh
+docker run --rm --name test -ti -p 465:465 -p 993:993 -e DOMAIN=yourdomain.com -e MYNETWORK="172.17.0.0/16" mail /bin/sh
 ```
 
 ```
@@ -17,13 +17,12 @@ ping adabru.de
 nc -v -l -p 465
 
 # change your domain
-sed -i "s/example\.com/$DOMAIN/" /etc/postfix/main.cf
+sed -i "s/example\.com/$DOMAIN/" /etc/opensmtpd.conf
 # add local trusted networks
-sed -i "s|127\.0\.0\.0/8|$MYNETWORKS|" /etc/postfix/main.cf
+sed -i "s|127\.0\.0\.0/8|$MYNETWORK|" /etc/opensmtpd.conf
 
 syslogd
-postfix start
-stunnel
+smtpd
 
 # check logs
 tail /var/log/messages

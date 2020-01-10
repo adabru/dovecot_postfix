@@ -3,11 +3,11 @@
 root: mail
 
 # Basic system aliases -- these MUST be present
-MAILER-DAEMON:  postmaster
 postmaster:     root
+MAILER-DAEMON:  postmaster
+abuse:          postmaster
 
 # other aliases
-abuse:          postmaster
 sink:           postmaster
 info:           postmaster
 me:             postmaster
