@@ -8,8 +8,13 @@ compatibility_level = 2
 myhostname = example.com
 mydomain = example.com
 
+# allowed senders
 mynetworks = 127.0.0.0/8
 
+# stunnel
+relayhost = [127.0.0.1]:11125
+
+# enforce encryption on incoming mail
 smtp_tls_security_level = encrypt
 smtpd_tls_wrappermode = yes
 # smtpd_sasl_auth_enable = yes

@@ -36,11 +36,18 @@ DOMAIN=yourdomain.com
 # check connection
 nc $DOMAIN 465
 
-# check smtp relay
+# check smtps service
 msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-starttls=off --tls-certcheck=off -S
 
+# send email to yourself
 echo -e "Subject: Hello\n\nWorld!" | \
 msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-starttls=off  --tls-certcheck=off --auth=off \
   --from=info@$DOMAIN --add-missing-from-header=on --add-missing-date-header=on \
   -- info@$DOMAIN
+
+# send email to another server (must be run from same host)
+echo -e "Subject: Hello\n\nWorld!" | \
+msmtp -v --host=localhost --port=465 --tls=on --tls-starttls=off  --tls-certcheck=off --auth=off \
+  --from=info@$DOMAIN --add-missing-from-header=on --add-missing-date-header=on \
+  -- info@someotherdomain.com
 ```
