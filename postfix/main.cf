@@ -20,3 +20,7 @@ smtpd_tls_wrappermode = yes
 # smtpd_sasl_auth_enable = yes
 smtpd_tls_cert_file=/etc/ssl/certs/mailcert.pem
 smtpd_tls_key_file=/etc/ssl/private/mail.key
+
+# abuse containment
+smtpd_client_recipient_rate_limit = 10
+anvil_rate_time_unit = 120s

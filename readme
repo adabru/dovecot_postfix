@@ -23,6 +23,7 @@ sed -i "s|127\.0\.0\.0/8|$MYNETWORKS|" /etc/postfix/main.cf
 
 syslogd
 postfix start
+stunnel
 
 # check logs
 tail /var/log/messages
@@ -32,6 +33,7 @@ tail /var/log/messages
 
 ```
 DOMAIN=yourdomain.com
+RECIPIENT=info@someotherdomain.com
 
 # check connection
 nc $DOMAIN 465
@@ -49,5 +51,5 @@ msmtp -v --host=$DOMAIN --port=465 --tls=on --tls-starttls=off  --tls-certcheck=
 echo -e "Subject: Hello\n\nWorld!" | \
 msmtp -v --host=localhost --port=465 --tls=on --tls-starttls=off  --tls-certcheck=off --auth=off \
   --from=info@$DOMAIN --add-missing-from-header=on --add-missing-date-header=on \
-  -- info@someotherdomain.com
+  -- $RECIPIENT
 ```
