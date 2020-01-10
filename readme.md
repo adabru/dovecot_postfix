@@ -1,3 +1,20 @@
+
+# Status (dormant)
+
+Google hosting doesn't allow port 25 no way, I guess all other hosts do allow.
+Because of policy I am bound to google hosting for half a year.
+After searching the web I didn't find a configuration for neither postfix nor opensmtpd to allow relaying to smtps 465.
+This option probably won't be implemented in the future either, as smtps was deprecated by IANA, although it is more secure than 587/STARTTLS which can downgrade to plain text.
+Furthermore port 465 is redefined as tls-implicit-submission, which makes it both better and worse.
+With this situation I decided to use an external smtp relay while I am bound to google. After that period I will reconsider.
+
+TODOs:
+
+- openrelay check: http://www.mailradar.com/openrelay/
+- antispam greylist: https://www.heinlein-support.de/sites/default/files/SPF-DKIM-Greylisting_FrOSCon_2012.pdf
+
+## Incomplete Setup
+
 Run
 
 ```
